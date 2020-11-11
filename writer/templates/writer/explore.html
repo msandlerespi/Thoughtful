@@ -1,0 +1,62 @@
+{% extends 'writer/layout.html' %}
+
+{% load static %}
+
+{% block script %}
+<script src="{% static 'writer/explore.js' %}"></script>
+{% endblock %}
+
+{% block title %}Explore | {% endblock %}
+
+{% block body %}
+{% csrf_token %}
+{% if thoughts %}
+{% if currentUser %}
+<h1>{{ currentUser.name }}</h1>
+<h4><strong>Moral Basis: </strong>{{ currentUser.morals }}</h4>
+<hr />
+<a class="page-change" {% if pageMinus is not 0 %} href="{% url 'thoughts' currentUser.username pageMinus %}"
+    {% endif %}>⟵</a>
+<a class="page-change" {% if pagePlus is not 0 %} href="{% url 'thoughts' currentUser.username pagePlus %}"
+    {% endif %}>⟶</a>
+{% else %}
+<a class="page-change" {% if pageMinus is not 0 %} href="{% url 'allThoughts' pageMinus %}" {% endif %}>⟵</a>
+<a class="page-change" {% if pagePlus is not 0 %} href="{% url 'allThoughts' pagePlus %}" {% endif %}>⟶</a>
+{% endif %}
+{% for thought in thoughts %}
+<div class="thought">
+    {% if currentUser and not user.username == currentUser.username %}
+    <a href="{% url 'userArgument' currentUser.username ' ' thought.id %}">{{ thought.value }}</a>
+    {% elif thought.user %}
+    <a href="{% url 'userArgument' thought.user ' ' thought.id %}">{{ thought.value }}</a>
+    {% else %}
+    <a href="{% url 'argument' ' ' thought.id %}">{{ thought.value }}</a>
+    {% endif %}
+    {% if thought.user %}
+    | <a href="{% url 'thoughts' thought.user 1 %}">{{ thought.user }}</a>
+    {% elif currentUser and user.username == currentUser.username %}
+    <button class="delete" id="del_{{ thought.id }}">X</button>
+    {% endif %}
+</div>
+{% endfor %}
+{% elif questions %}
+<a class="page-change" {% if pageMinus is not 0 %} href="{% url 'questions' 'rank' pageMinus %}" {% endif %}>⟵</a>
+<a class="page-change" {% if pagePlus is not 0 %} href="{% url 'questions' 'rank' pagePlus %}" {% endif %}>⟶</a>
+{% for question in questions %}
+<form {% if user.is_authenticated %} action="{% url 'newThought' %}" method='POST' {% else %}
+    action="{% url 'register' %}" method='GET' {% endif %}>
+    {% csrf_token %}
+    <input name="question" readonly value="{{ question }}" class="question">
+    <input type="submit" value="Ask this question" class="ask">
+</form>
+{% endfor %}
+{% endif %}
+<div id="delPage" style="display: none;">
+    Delete <span id=delObject></span>?
+    <br>
+    <br>
+    <button id="delYes">Yes</button>
+    <button id="delNo">No</button>
+    </form>
+</div>
+{% endblock %}

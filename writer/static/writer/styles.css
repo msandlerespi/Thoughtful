@@ -1,0 +1,292 @@
+body {
+    font-family: monospace;
+    /* background-color: white; */
+}
+h1 {
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+}
+h4 {
+    text-align: center;
+}
+hr {
+    background-color: black;
+}
+textarea {
+    resize: none;
+}
+a {
+    color:black !important;
+}
+button {
+    background-color: white;
+    outline: none !important;
+    padding: 5px;
+    border: 2px solid black;
+}
+a:hover {
+    color: darkslategray !important;
+    text-decoration: none !important;
+}
+button:hover {
+    /* background-color: #EEE; */
+    border-bottom: 6px solid black;
+}
+button:active {
+    border-bottom: 2px solid black !important;
+    margin-top: 4px;
+}
+a.btn-link{
+    border: 7px double #555555;
+    background-color: #F6F6F6;
+    padding: 10px;
+    position: relative;
+    border-radius: 2px;
+    top: 75px;
+    margin: 20px;
+}
+a.btn-link:hover{
+    background-color: #EEEEEE;
+    border: 9px double #333333;
+    color: black !important;
+}
+#search-button {
+    border: none;
+    background-color: transparent;
+    font-size: 15px;
+    margin-left: -7px;
+}
+#search-button:focus {
+    outline: none;
+}
+#search-button:hover {
+    color: darkslategray;
+}
+hr.vertical {
+    width: 1px;
+    height: 18px;
+    background-color: black;
+    border: none;
+    margin-top: 9px;
+}
+img.login-background {
+    z-index: -1;
+    opacity: 50%;
+    position: absolute;
+}
+.float-form{
+    background-color: white;
+    position: relative;
+    width: 60%;
+    left: 20%;
+    text-align: center;
+    border: 7px solid black;
+    border-radius: 7px;
+    padding: 10px;
+    opacity: 95%; 
+}
+.login-input{
+    padding: 5px;
+    width: 50%;
+    display: inline-block;
+    margin: 10px;
+}
+#login{
+    width: 25%;
+    padding: 5px;
+    margin: 20px;
+}
+.signup-button{
+    width: 40%;
+    padding: 5px;
+    margin: 10px;
+    margin-top: 18px;
+}
+.register-input{
+    padding: 5px;
+    width: 90%;
+    display: inline-block;
+    margin: 10px;
+}
+.register-format{
+    text-align: left;
+    width:49%;
+    display: inline-block;
+    /* padding-left: 5%;  */
+    /* padding-right: 5%; */
+}
+.textarea-input{
+    margin-top: 5%;
+    width: 90%;
+}
+.popup{
+    transition: opacity 2s;
+    position: absolute;
+    left: 25%;
+    top: 20px;
+    width: 50%;
+    text-align: center;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: white;
+    border: 8px double black;
+}
+#pass-note{
+    /* god this is such bad code. its isolated luckily */
+    font-size: 10px;
+    margin-top: -9px;
+    margin-bottom: 10px;
+    margin-left: -64%;
+}
+#message{
+    display: none;
+}
+.background-color{
+    background-color: #FFFFAA;
+    width: 100%;
+    opacity: 40%;
+    position: absolute;
+    z-index: -1;
+    height: 103%;
+}
+
+/* Writer */
+#main-argument {
+    text-align: center;
+    color: black;
+    width: 100%;
+    font-size: 24px;
+    padding: 3%;
+    border-bottom: 1px solid black;
+    -webkit-user-select: none;
+}
+#divider {
+    z-index: -1;
+    left: 50%;
+    width: 1px;
+    background-color: black;
+    border: 1px solid black;
+    position: absolute;
+}
+.arg{
+    position: absolute;
+    z-index: 10;
+    background-color: #CCC;
+    width: 200px;
+    height: 100px;
+    border: 2px solid black;
+    -webkit-user-select: none;
+    cursor: pointer;
+}
+.arg-selected{
+    z-index: 12 !important;
+    border: 5px solid #AAA !important;
+}
+.arg-drag{
+    border: 5px solid #AAA !important;
+}
+@media screen and (min-width: 500px) {
+    #pullout{
+        position: absolute;
+        width: 200px;
+        left: -200px;
+        transition: left 1s;
+        border: 1px solid black;
+        border-top: none;
+        z-index: 1000000;
+        text-align: center;
+        padding: 20px;
+        justify-content: center;
+    }
+}
+@media screen and (max-width: 500px) {
+    #pullout{
+        position: absolute;
+        width: 100px;
+        left: -100px;
+        transition: left 1s;
+        border: 1px solid black;
+        border-top: none;
+        z-index: 1000000;
+        text-align: center;
+        padding: 20px;
+        justify-content: center;
+    }
+}
+.edit-arg{
+    float: right;
+    cursor: pointer;
+    font-size: 10px;
+}
+.edit-arg:hover{
+    text-decoration: underline;
+}
+#main-argument-input{
+    width: 80%;
+}
+.question{
+    width: 74%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    margin: 1px;
+}
+.ask{
+    width: 25%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    margin-left: -3px;
+}
+.thought{
+    border: 1px solid black;
+    width: 100%;
+    margin: 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    position: relative;
+}
+.delete{
+    position: absolute; 
+    right: 10px; 
+    bottom: 2px;
+}
+#delPage {
+    background-color: white;
+    position: fixed;
+    top: 50%;
+    width: 60%;
+    left: 20%;
+    height: 20%;
+    text-align: center;
+    border: 7px solid black;
+    border-radius: 7px;
+    padding: 10px;
+    opacity: 95%; 
+}
+.traverse{
+    width: 30px;
+    height: 20px;
+    border: 2px solid black;
+    margin: 0 auto;
+    cursor: pointer;
+}
+.traverse-current{
+    border: 4px solid black !important;
+    cursor: default !important;
+}
+.traverse-line{
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+.page-change{
+    /* border: 1px solid black; */
+    margin: 10px;
+    font-size: 30px;
+    cursor: pointer;
+}

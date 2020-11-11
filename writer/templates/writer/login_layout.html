@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %} | Thoughtful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'writer/styles.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3caeb7c332.js" crossorigin="anonymous"></script>
+    <script src="{% static 'writer/login_layout.js' %}"></script>
+    {% block script %} {% endblock %}
+</head>
+<body>
+    <img src = "https://images-americanas.b2w.io/produtos/01/00/sku/32987/8/32987827_1SZ.jpg" class="login-background">
+    <img src = "https://images-americanas.b2w.io/produtos/01/00/sku/32987/8/32987827_1SZ.jpg" class="login-background">
+    <div class="float-form">
+        {% block body %}
+        {% endblock %}
+    </div>
+</body>
+</html>

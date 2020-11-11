@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>{% block title %}{% endblock %}Thoughtful</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="{% static 'writer/styles.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/3caeb7c332.js" crossorigin="anonymous"></script>
+
+    {% block script %}
+    {% endblock %}
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg border-bottom border-dark">
+        <a class="navbar-brand" href="{% url 'index' %}">Thoughtful</a>
+        <a class="nav-link" href="{% url 'questions' 'rank' 1 %}">Questions</a>
+        <a class="nav-link" href="{% url 'allThoughts' 1 %}">Thoughts</a>
+        <!-- <form class="form-inline nav-link">
+            <input type="text" placeholder="Search">
+            <button type="submit" id="search-button"><i class="fas fa-search"></i></button>
+        </form> -->
+        <ul class="nav navbar-nav ml-auto">
+            {% if user.is_authenticated %}
+            <a class="nav-link" href="{% url 'thoughts' user.username 1 %}">{{ user.name }}</a>
+            <hr class="vertical">
+            <a class="nav-link" href="{% url 'logout' %}">Log out</a>
+            {% else %}
+            <a class="nav-link" href="{% url 'register' %}">Make an account</a>
+            <hr class="vertical">
+            <a class="nav-link" href="{% url 'login' %}">Log in</a>
+            {% endif %}
+        </ul>
+    </nav>
+    {% block body %}
+    {% endblock %}
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+{% extends 'writer/layout.html' %}
+
+{% load static %}
+
+{% block title %}Thinking | {% endblock %}
+
+{% block script %}
+{% if isUser %}
+<script src="{% static 'writer/writer.js' %}"></script>
+{% else %}
+<script src="{% static 'writer/viewer.js' %}"></script>
+{% endif %}
+{% endblock %}
+
+{% block body %}
+{% if not isUser %}
+<input type="hidden" value="{{ currentUser }}" id="currentUser">
+{% endif %}
+<input type="hidden" {% if index %} value="{{ index }}" {% endif %} id="index">
+<input type="hidden" value="{{ thoughtId }}" id="thoughtId">
+{% csrf_token %}
+<div id="main-argument">
+    <input id="main-argument-input" {% if main %} value="{{main}}" readonly {% endif %}>
+</div>
+<div id="divider"></div>
+<div id="pullout" class="arg-map">
+    {% if isUser %}
+    <button id="save">Save</button>
+    <br>
+    <br>
+    {% endif %}
+    <br>
+    {% if index %}
+    {% for i in index %}
+    {% if i != ' ' %}
+    <div class="traverse" data-index="{{ i }}"></div>
+    <hr class="vertical traverse-line">
+    {% endif %}
+    {% endfor %}
+    {% endif %}
+    <div class="traverse traverse-current"></div>
+</div>
+{% for arg in args %}
+<div class="arg" id="arg{{ arg.id }}" style="top: {{ arg.top }}px; left: {{ arg.left }}px; ">
+    {% if arg.procon %}
+    Yes,
+    {% else %}
+    No,
+    {% endif %}
+    because
+    <div class="edit-arg">
+        edit
+    </div>
+    <textarea class="arg-input" rows=3 readonly>{{arg.content}}</textarea>
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "writer/login_layout.html" %}
+
+{% load static %}
+
+{% block title %}Sign up{% endblock %}
+
+{% block script %}<script src="{% static 'writer/register.js' %}"></script>{% endblock %}
+
+{% block body %}
+    <form action="{% url 'register' %}" method="POST">
+        {% csrf_token %}
+        <div id="register-p1">
+            <h4>Start developing your thoughts</h4>
+            <h6>Work through tough topics with personal, researched debate. See what other people are thinking about and clear up your own opinions.</h6>
+            <div class="register-format">
+                <label>Email</label> <br>
+                <input type="email" name="email" class="register-input" id="register-email" placeholder="rdescartes@example.com"> <br>
+                <label>Password</label> <br>
+                <input type="password" name="password" class="register-input" id="register-password" placeholder="C4rtes1An">
+                
+            </div>
+            <div class="register-format">
+                <label>Name</label> <br>
+                <input type="text" name="name" class="register-input" id="register-name" placeholder="Rene Descartes"> <br> <br>
+                <input type="button" class="signup-button" id="signup" value="Sign up" >
+            </div>
+            <p id="pass-note">8 char min, upper and lowercase letters</p>
+        </div>
+        <div id="register-p2" style="display: none;">
+            <h4>Tell us about how you look at the world. What is the basis of your moral compass?</h4>
+            <textarea rows="8" name="morals" id="morals-input" class="textarea-input" placeholder="The Ten Commandments, Utilitarianism, Satanism... (max 512 characters)"></textarea>
+            <input type="submit" class="signup-button" id="signup2" value="Submit" disabled>
+        </div>
+    </form>
+{% endblock %}

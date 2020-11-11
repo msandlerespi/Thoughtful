@@ -1,0 +1,36 @@
+{% extends 'writer/layout.html' %}
+
+{% load static %}
+
+{% block script %}
+<script src="{% static 'writer/login_layout.js' %}"></script>
+<script src="{% static 'writer/index.js' %}"></script>
+{% endblock %}
+
+{% block title %}Home | {% endblock %}
+
+{% block body %}
+<img src="https://images-americanas.b2w.io/produtos/01/00/sku/32987/8/32987827_1SZ.jpg" class="login-background">
+<img src="https://images-americanas.b2w.io/produtos/01/00/sku/32987/8/32987827_1SZ.jpg" class="login-background">
+<div class="background-color"></div>
+<div class="float-form">
+    <div id="display1">
+        <h4>Let's get started</h4>
+        <h6>Feel free to start exploring your thoughts even if you dont have an account yet. You can make an account at
+            any time and all your work will be saved.</h6>
+        <a class="btn-link" {% if user.is_authenticated %}{% else %} href="{% url 'register' %}" {% endif %}
+            id="new-thought">Start a new thought</a>
+        <a class="btn-link" {% if user.is_authenticated %} href="/thoughts/{{ user.username }}/1" {% else %}
+            href="{% url 'register' %}" {% endif %}>Finish up an old one</a>
+    </div>
+    <div id="display2" style="display: none;">
+        <form {% if user.is_authenticated %} action="{% url 'newThought' %}" method='POST' {% else %}
+            action="{% url 'register' %}" method='GET' {% endif %}>
+            {% csrf_token %}
+            <h4>What is your question for today?</h4>
+            <textarea class="textarea-input" rows=8 name="question"></textarea>
+            <input type="submit" class="signup-button" value="Get Started">
+        </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "writer/login_layout.html" %}
+
+{% load static %}
+
+{% block title %}Log in{% endblock %}
+
+{% block script %}<script src="{% static 'writer/login.js' %}"></script>{% endblock %}
+
+{% block body %}
+    {% if message %}
+        <div id="message">{{ message }}</div>
+    {% endif %}
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <h4>Dive back in</h4>
+        <label>Email</label> <br>
+        <input type="email" name="email" class="login-input" placeholder="Email"> <br>
+        <label>Password</label> <br>
+        <input type="password" name="password" class="login-input" placeholder="Password"> <br>
+        <input type="submit" id="login" value="Log in">
+    </form>
+{% endblock %}
